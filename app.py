@@ -6,7 +6,11 @@ from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 
-nltk.download('stopwords')
+import nltk
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
 
 # -------- Text Cleaning --------
@@ -48,4 +52,5 @@ if st.button("Predict Genre"):
         plot_vector = vectorizer.transform([cleaned_plot])
         prediction = model.predict(plot_vector)[0]
         st.success(f"Predicted Genre: **{prediction}**")
+
 
