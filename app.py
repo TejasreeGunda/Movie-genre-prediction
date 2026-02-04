@@ -48,3 +48,4 @@ if st.button("Predict Genre"):
         plot_vector = vectorizer.transform([cleaned_plot])
         prediction = model.predict(plot_vector)[0]
         st.success(f"Predicted Genre: **{prediction}**")
+
