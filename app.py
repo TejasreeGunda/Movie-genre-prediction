@@ -28,6 +28,7 @@ train_data = pd.read_csv(
     names=["id", "title", "plot_summary", "genre"]
 )
 
+train_data["genre"] = train_data["genre"].apply(lambda x: x.split(",")[0])
 train_data["clean_plot"] = train_data["plot_summary"].apply(clean_text)
 
 # -------- Vectorization --------
@@ -52,5 +53,6 @@ if st.button("Predict Genre"):
         plot_vector = vectorizer.transform([cleaned_plot])
         prediction = model.predict(plot_vector)[0]
         st.success(f"Predicted Genre: **{prediction}**")
+
 
 
